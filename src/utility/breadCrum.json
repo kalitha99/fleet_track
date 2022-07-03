@@ -1,0 +1,16 @@
+{
+  "FLEETtrack": {
+    "home": [
+      {
+        "id": "home",
+        "name": "Home",
+        "path": "/"
+      }
+    ],
+    "addVehicleDetails": [{
+      "id": "addVehicleDetails",
+      "name": "add Vehicle Details",
+      "path": "/addVehicleDetails"
+    }]
+  }
+}

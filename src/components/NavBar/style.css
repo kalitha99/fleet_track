@@ -1,0 +1,49 @@
+.header{
+    height: 80px;
+    box-shadow: 0px 1px 10px #101518;
+    background: #697169;
+    align-items: center;
+    padding: 10px 70px 0;
+}
+
+.logged{
+    display: flex !important;
+    flex-flow: row-reverse;
+}
+
+.loggedText2{
+    font-size: 20px;
+    display: block;
+    font-weight: 700;
+}
+
+.loggedText{
+    text-align: right;
+}
+
+.user{
+    width: 50px;
+    height: 50px;
+    background: #101518;
+    border-radius: 50%;
+    position: relative;
+    margin-left: 15px;
+}
+.user span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    color: #ffffff;
+    font-size: 28px;
+    font-weight: 100;
+}
+
+.dropdownItem{
+    padding:10px 20px;
+}
+
+.menuItem{
+    margin-right: 10px;
+    font-size: 16px;
+}

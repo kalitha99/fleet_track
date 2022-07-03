@@ -1,0 +1,18 @@
+.loginPage{
+    background: url("/pics/Untitled.jpg") no-repeat;
+    background-size: cover;
+    min-height: 100vh;
+}
+
+.site-card {
+    position: center;
+    width: 450px;
+    margin: auto !important;
+    padding: 20px 60px !important;
+    box-shadow: 1px 3px 5px #261010;
+}
+
+.login{
+    align-items: center;
+    height: calc(60vh - 60px);
+}
