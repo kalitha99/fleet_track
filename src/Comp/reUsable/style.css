@@ -1,0 +1,19 @@
+.card{
+    width: 90%;
+    margin: 0 auto 20px;
+    height: 140px !important;
+    border: none !important;
+    border-radius: 10px !important;
+    background-color: #044476 !important;
+}
+
+.card p {
+    white-space: normal;
+    line-height: 16px;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.card:hover{
+    background-color: #0671c4 !important;
+}

@@ -1,10 +1,9 @@
 import React from 'react';
 import './style.css';
-import {Button, Row, Col, Card, Form, Input,} from "antd";
+import {Button, Row, Col, } from "antd";
 import {Typography} from "antd";
 import {useHistory} from 'react-router-dom';
 import { LoginOutlined} from "@ant-design/icons";
-import Dashboard from "../adminHomePage/dashboard";
 
 const LandingPage = () => {
 

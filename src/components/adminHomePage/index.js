@@ -1,20 +1,29 @@
 import React from 'react';
 import {BrowserRouter, Switch, Route, HashRouter} from "react-router-dom";
-import Navbar from "../NavBar";
+import Navbar from "../../Comp/NavBar";
 import Dashboard from "./dashboard";
+import AddNewDriver from "./AddNewDriver";
+import AddNewVehicle from "./AddNewVehicle";
 
 const AdminHomePage = () => {
     return (
         <div>
             <Navbar/>
             <div>
-                <BrowserRouter basename={"/adminHome"}>
+                <HashRouter basename={'/adminHome'}>
                     <Switch>
-                        <Route exact path={"/"}>
+                        <Route  path={'/add-Vehicle'}>
+                            <AddNewVehicle/>
+                        </Route>
+                        <Route  path={'/add-Driver'}>
+                            <AddNewDriver/>
+                        </Route>
+                        <Route exact path={'/'}>
                             <Dashboard/>
                         </Route>
+
                     </Switch>
-                </BrowserRouter>
+                </HashRouter>
             </div>
         </div>
     );

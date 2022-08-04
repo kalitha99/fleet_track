@@ -1,5 +1,5 @@
 .landingPage{
-    background: url("/pics/Untitled.jpg") no-repeat;
+    background: url("/public/pics/Untitled.jpg") no-repeat;
     background-size: cover;
     min-height: 100vh;
 }

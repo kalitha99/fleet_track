@@ -1,19 +1,52 @@
 import React from 'react';
 import "./style.css"
 import {Row, Col, Card, Form, Input, Button} from "antd";
-import {signInWithEmailAndPassword} from "firebase/auth"
-import {auth} from "../../fireBase";
 import {useHistory} from 'react-router-dom';
-
+import axios from "axios";
 
 
 const Login = () => {
-    const history = useHistory();
-    function onFinish(values) {
+    const ACCESS_TOKEN = 'ACCESS_TOKEN';
+    const USERNAME = 'USERNAME';
 
-        signInWithEmailAndPassword(auth,values.username,values.password)
-            .then(auth=>console.log(auth),history.push("/adminHome/"))
-            .catch(error=>console.log(error))
+    const history = useHistory();
+
+    function onFinish(values) {
+        axios.post('http://localhost:3500/api/login', {
+                name: values.username,
+                password: values.password
+            }
+        ).then(r => {
+            console.log(r)
+            if (r.data.status === 'ok') {
+                    sessionStorage.setItem(ACCESS_TOKEN, r.data.accessToken);
+                    sessionStorage.setItem(USERNAME, r.data.name);
+                    if (r.data.roles === 'admin'){
+                        history.push("/adminHome")
+                    }else if (r.data.roles === 'user'){
+                        history.push("/userHome")
+                    }
+            }else {
+                console.log('wrong user name or password')
+            }
+
+        }
+        /*,history.push("/adminHome/")*/)
+        //
+        //     signInWithEmailAndPassword(auth,values.username,values.password)
+        //         .then(auth=>console.log(auth),history.push("/adminHome/"))
+        //         .catch(error=>console.log(error))
+        // }
+
+        //     createUserWithEmailAndPassword(auth,values.username,values.password)
+        //         .then(async (userCredential) => {
+        //             const user = userCredential.user;
+        //             await updateProfile(user, {
+        //                 displayName: 'Admin',
+        //             })
+        //             alert("Welcome " + user.displayName);
+        //         })
+        //         .catch(error=>console.log(error))
     }
 
     return (
@@ -48,7 +81,7 @@ const Login = () => {
                                         },
                                     ]}
                                 >
-                                    <Input />
+                                    <Input/>
                                 </Form.Item>
 
                                 <Form.Item
@@ -63,7 +96,6 @@ const Login = () => {
                                 >
                                     <Input.Password/>
                                 </Form.Item>
-
 
 
                                 <Form.Item
