@@ -5,17 +5,14 @@ import ChatBot from "../../../Comp/chatBot";
 import {Col, Row} from "antd";
 import CustomCard from "../../../Comp/reUsable/card";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import BreadCrumb from "../../../Comp/breadCrumb";
 
 const Userdashboard = () => {
 
 
     return (
             <div className="container">
-                    <div style={{
-                        paddingTop:50
-                    }}>
-
-                    </div>
+                <BreadCrumb />
                     <Row justify={{auto: true}}>
                         <Col offset={1} span={4}>
                             <CustomCard

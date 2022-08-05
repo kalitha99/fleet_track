@@ -3,6 +3,7 @@ import {Card, Table} from "antd";
 import {viewAllVehicleColumns} from "./tableProperties";
 import {getVehicleAction} from "../../../models/vehicleModel";
 import {useDispatch, useSelector} from "react-redux";
+import BreadCrumb from "../../../Comp/breadCrumb";
 
 const ViewAllVehicles = () => {
     const dispatch = useDispatch();
@@ -16,6 +17,7 @@ const ViewAllVehicles = () => {
     },[])
     return (
         <div>
+            <BreadCrumb />
             <Card>
                 <Table
                     id={"VehicleDataTable"}

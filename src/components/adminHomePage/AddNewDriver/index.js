@@ -1,6 +1,7 @@
 import React from 'react';
 import "./style.css"
 import {Button, Form, Input, InputNumber, Card, DatePicker} from 'antd';
+import BreadCrumb from "../../../Comp/breadCrumb";
 
 const layout = {
     labelCol: { span: 2 },
@@ -11,6 +12,7 @@ const AddNewDriver = () => {
 
     return (
         <div>
+            <BreadCrumb />
             <Card>
                 <Form {...layout} name="nest-messages">
                     <Form.Item name={'name'} label="Name" rules={[{required: true}]}>

@@ -11,13 +11,13 @@ const Navbar = () => {
         <Menu>
 
             <Menu.Item onClick={() => (sessionStorage.clear(), history.replace("/"))} className='dropdownItem'>
-                <LogoutOutlined className='menuItem'/> Logout
+                <LogoutOutlined key={"1"} className='menuItem'/> Logout
             </Menu.Item>
         </Menu>
     );
 
     return (
-        <div className="header">
+        <div  className="header">
             <Row>
                 <Col span={3}>
 

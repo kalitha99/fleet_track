@@ -5,6 +5,7 @@ import {Card, Row, Col} from 'antd';
 import CustomCard from "../../../Comp/reUsable/card";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {useHistory} from "react-router-dom";
+import BreadCrumb from "../../../Comp/breadCrumb";
 
 const Dashboard = () => {
 
@@ -12,12 +13,7 @@ const Dashboard = () => {
 
     return (
         <div>
-            <div className="container">
-                <div style={{
-                    paddingTop:50
-                }}>
-
-                </div>
+                <BreadCrumb />
                 <Row justify={{auto: true}}>
                     <Col offset={1} span={4}>
                         <CustomCard
@@ -66,7 +62,7 @@ const Dashboard = () => {
                     </Col>
                 </Row>
                 <ChatBot/>
-            </div>
+
         </div>
     )
 }

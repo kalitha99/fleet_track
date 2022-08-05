@@ -3,6 +3,7 @@ import "./style.css"
 import {Button, Card, DatePicker, Form, Input, InputNumber} from "antd";
 import {addNewVehicleAction} from "../../../models/vehicleModel";
 import {useDispatch} from "react-redux";
+import BreadCrumb from "../../../Comp/breadCrumb";
 
 const layout = {
     labelCol: { span: 4 },
@@ -19,6 +20,7 @@ const AddNewVehicle = () => {
 
     return (
         <div>
+            <BreadCrumb />
             <Card>
                 <Form {...layout} onFinish={onFinish} name="nest-messages">
                     <Form.Item name={'make'} label="Make" rules={[{required: true}]}>
