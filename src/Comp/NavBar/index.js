@@ -10,7 +10,7 @@ const Navbar = () => {
     const menu = (
         <Menu>
 
-            <Menu.Item onClick={() => (sessionStorage.clear(), history.push("/"))} className='dropdownItem'>
+            <Menu.Item onClick={() => (sessionStorage.clear(), history.replace("/"))} className='dropdownItem'>
                 <LogoutOutlined className='menuItem'/> Logout
             </Menu.Item>
         </Menu>

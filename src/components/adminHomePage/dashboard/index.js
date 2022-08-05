@@ -33,6 +33,7 @@ const Dashboard = () => {
                     <Col  span={4}>
                         <CustomCard
                             btnname="View all vehicle details"
+                            onClick={()=>history.push('/View-Vehicle-Details')}
                         />
                     </Col>
                     <Col  span={4}>

@@ -3,51 +3,23 @@ import "./style.css"
 import {Row, Col, Card, Form, Input, Button} from "antd";
 import {useHistory} from 'react-router-dom';
 import axios from "axios";
+import {useDispatch,useSelector} from "react-redux";
+import {loginUserAction} from "../../models/authModel";
 
 
 const Login = () => {
-    const ACCESS_TOKEN = 'ACCESS_TOKEN';
-    const USERNAME = 'USERNAME';
-
+    const dispatch = useDispatch();
     const history = useHistory();
 
     function onFinish(values) {
-        axios.post('http://localhost:3500/api/login', {
-                name: values.username,
-                password: values.password
-            }
-        ).then(r => {
-            console.log(r)
-            if (r.data.status === 'ok') {
-                    sessionStorage.setItem(ACCESS_TOKEN, r.data.accessToken);
-                    sessionStorage.setItem(USERNAME, r.data.name);
-                    if (r.data.roles === 'admin'){
-                        history.push("/adminHome")
-                    }else if (r.data.roles === 'user'){
-                        history.push("/userHome")
-                    }
-            }else {
-                console.log('wrong user name or password')
-            }
-
+        const val = {
+            name : values.username,
+            password : values.password,
+            history
         }
-        /*,history.push("/adminHome/")*/)
-        //
-        //     signInWithEmailAndPassword(auth,values.username,values.password)
-        //         .then(auth=>console.log(auth),history.push("/adminHome/"))
-        //         .catch(error=>console.log(error))
-        // }
+       dispatch(loginUserAction(val));
+        }
 
-        //     createUserWithEmailAndPassword(auth,values.username,values.password)
-        //         .then(async (userCredential) => {
-        //             const user = userCredential.user;
-        //             await updateProfile(user, {
-        //                 displayName: 'Admin',
-        //             })
-        //             alert("Welcome " + user.displayName);
-        //         })
-        //         .catch(error=>console.log(error))
-    }
 
     return (
         <div className="loginPage">
