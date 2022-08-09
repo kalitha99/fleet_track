@@ -1,0 +1,16 @@
+.two-rows-label .ant-form-item-label {
+padding: 8px 0 !important}
+label {
+    white-space: normal;
+    margin-right: 80px;
+    display: block;
+    text-align: left;
+    line-height: 15px;
+    width: 150px;}
+:after {
+     content: none !important;
+ }
+.ant-form-item-required:before {
+     position: absolute;
+     left: -7px;
+ }
