@@ -4,6 +4,7 @@ import Navbar from "../../Comp/NavBar";
 import Userdashboard from "./dashboard";
 import ViewAllVehicles from "../adminHomePage/viewAllVehicles";
 import UpdateOdoMeter from "./UpdateOdoMeter";
+import EnterRevenueLicenseDetails from "./enterRevenueLicenseDetails";
 
 const UserHomePage = () => {
     return (
@@ -12,6 +13,9 @@ const UserHomePage = () => {
             <div>
                 <HashRouter basename={"/userHome"}>
                     <Switch>
+                        <Route  path={'/Update-revenue-license'}>
+                            <EnterRevenueLicenseDetails/>
+                        </Route>
                         <Route  path={'/Update-Latest-ODO'}>
                             <UpdateOdoMeter/>
                         </Route>

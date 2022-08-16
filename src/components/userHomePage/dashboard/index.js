@@ -46,7 +46,14 @@ const Userdashboard = () => {
                     <Row>
                         <Col offset={1} span={4}>
                             <CustomCard
-                                btnname="Enter vehicles revenue license and Insurance "
+                                btnname="Enter vehicles revenue license details "
+                                onClick={()=>history.push('/Update-revenue-license')}
+                            />
+                        </Col>
+                        <Col  span={4}>
+                            <CustomCard
+                                btnname="Enter vehicles Insurance details "
+
                             />
                         </Col>
                         <Col  span={4}>
