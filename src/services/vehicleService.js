@@ -15,3 +15,6 @@ export const updateODO = (payload) => {
 export const updateRevenueLicense = (payload) => {
     return AxiosInstance.post('/vehicles/updateRevenueLicense', payload);
 };
+export const updateInsuranceDetails = (payload) => {
+    return AxiosInstance.post('/vehicles/updateInsuranceDetails', payload);
+};

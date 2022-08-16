@@ -5,6 +5,7 @@ import Userdashboard from "./dashboard";
 import ViewAllVehicles from "../adminHomePage/viewAllVehicles";
 import UpdateOdoMeter from "./UpdateOdoMeter";
 import EnterRevenueLicenseDetails from "./enterRevenueLicenseDetails";
+import EnterinsuranceDetails from "./EnterInsuranceDetails";
 
 const UserHomePage = () => {
     return (
@@ -13,6 +14,9 @@ const UserHomePage = () => {
             <div>
                 <HashRouter basename={"/userHome"}>
                     <Switch>
+                        <Route  path={'/Update-insurance-details'}>
+                            <EnterinsuranceDetails/>
+                        </Route>
                         <Route  path={'/Update-revenue-license'}>
                             <EnterRevenueLicenseDetails/>
                         </Route>
