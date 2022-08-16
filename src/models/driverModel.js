@@ -37,8 +37,9 @@ const addNewDriverSaga = function* (action) {
 
 const getDriversSaga = function* (action) {
     try {
+        console.log("driver")
         const response = yield call(getVehicleDetails, action.payload);
-        yield put(setDriverDataAction(response.data.vehicles))
+        yield put(setDriverDataAction(response.data.drivers))
         console.log(response)
     } catch (e) {
 
@@ -61,7 +62,7 @@ export const driverReducer = createReducer(
         [setDriverDataAction]: (state, payload) => {
             return {
                 ...state,
-                vehicleDetails:payload
+                driverDetails:payload
             };
         },
     },

@@ -1,6 +1,6 @@
 import './App.css';
 import React from "react";
-import {faComments} from '@fortawesome/free-solid-svg-icons';
+import {faComments, faEdit} from '@fortawesome/free-solid-svg-icons';
 import {BrowserRouter, Switch, Route, HashRouter} from "react-router-dom";
 import {library} from '@fortawesome/fontawesome-svg-core';
 import LandingPage from "./components/landingPage/index";
@@ -14,7 +14,8 @@ import BreadCrumb from "./Comp/breadCrumb";
 
 
 library.add(
-    faComments
+    faComments,
+    faEdit
 )
 
 function App() {

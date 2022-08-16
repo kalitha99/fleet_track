@@ -13,7 +13,7 @@ export const store = createStore(
     combineReducers({
         auth: authReducer,
         vehicleData:vehicleReducer,
-        driver:driverReducer,
+        driverData:driverReducer,
     }),
     composeEnhancers(applyMiddleware(sagaMiddleware))
 );

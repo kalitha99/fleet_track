@@ -48,6 +48,7 @@ const Dashboard = () => {
                     <Col offset={1} span={4}>
                         <CustomCard
                             btnname="View all driver details"
+                            onClick={() => history.push('/View-Driver-Details')}
                         />
                     </Col>
                     <Col  span={4}>

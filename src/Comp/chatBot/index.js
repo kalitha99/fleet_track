@@ -10,15 +10,7 @@ const ChatBot = () => {
     const [Response, setResponse] = useState();
 
     useEffect(() => {
-        console.log(sessionStorage.ACCESS_TOKEN)
-        axios.get('http://localhost:3500/api/quote',{
-                headers:{
-                    'x-access-token': sessionStorage.ACCESS_TOKEN
-                }
-            }
-        ).then(r => {
-            console.log(r)
-        })
+
     }, []);
 
 
@@ -80,7 +72,7 @@ const ChatBot = () => {
                                 message?.map((msg,index)=>{
                                     if (msg?.from==='us'){
                                         return <div key={index} className="messages__item messages__item--operator">{msg?.msg}</div>
-                                    }else {
+                                    }else  if (msg?.from==='bot'){
                                         return <div key={index} className="messages__item messages__item--visitor">{msg?.msg}</div>
                                     }
                                 })

@@ -2,19 +2,27 @@ import React from 'react';
 import {BrowserRouter, Switch, Route, HashRouter} from "react-router-dom";
 import Navbar from "../../Comp/NavBar";
 import Userdashboard from "./dashboard";
+import ViewAllVehicles from "../adminHomePage/viewAllVehicles";
+import UpdateOdoMeter from "./UpdateOdoMeter";
 
 const UserHomePage = () => {
     return (
         <div>
             <Navbar/>
             <div>
-                <BrowserRouter basename={"/userHome"}>
+                <HashRouter basename={"/userHome"}>
                     <Switch>
+                        <Route  path={'/Update-Latest-ODO'}>
+                            <UpdateOdoMeter/>
+                        </Route>
+                        <Route  path={'/View-Vehicle-Details'}>
+                            <ViewAllVehicles/>
+                        </Route>
                         <Route exact path={"/"}>
                             <Userdashboard/>
                         </Route>
                     </Switch>
-                </BrowserRouter>
+                </HashRouter>
             </div>
         </div>
     );

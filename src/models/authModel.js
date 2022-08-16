@@ -16,7 +16,7 @@ const ROLE_TYPE = 'ROLE_TYPE';
 //SAGAS
 const loginUserSaga = function* (action) {
 
-    console.log(action)
+
     try {
         const values = {
             name: action.payload.name,

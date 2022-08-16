@@ -5,6 +5,7 @@ import Dashboard from "./dashboard";
 import AddNewDriver from "./AddNewDriver";
 import AddNewVehicle from "./AddNewVehicle";
 import ViewAllVehicles from "./viewAllVehicles";
+import ViewAllDrivers from "./viewAllDrivers";
 
 const AdminHomePage = () => {
     return (
@@ -13,6 +14,9 @@ const AdminHomePage = () => {
             <div>
                 <HashRouter basename={'/adminHome'}>
                     <Switch>
+                        <Route  path={'/View-Driver-Details'}>
+                            <ViewAllDrivers/>
+                        </Route>
                         <Route  path={'/View-Vehicle-Details'}>
                             <ViewAllVehicles/>
                         </Route>
