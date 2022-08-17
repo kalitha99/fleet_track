@@ -30,6 +30,7 @@ const Userdashboard = () => {
                         <Col  span={4}>
                             <CustomCard
                                 btnname="Enter vehicle maintenance costs"
+                                onClick={()=>history.push('/Enter-maintenance-costs')}
                             />
                         </Col>
                         <Col  span={4}>
