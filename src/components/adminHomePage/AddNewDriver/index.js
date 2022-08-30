@@ -14,6 +14,8 @@ const AddNewDriver = () => {
     const dispatch = useDispatch();
 
     function onFinish(values) {
+
+        values.assigned_vehicle = "unassigned";
         dispatch(addNewDriverAction(values));
     }
 

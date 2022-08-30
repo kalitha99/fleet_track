@@ -4,7 +4,7 @@ import {message} from 'antd';
 import {
     addNewVehicle,
     getVehicleDetails,
-    searchVehicleDetails, updateInsuranceDetails,
+    searchVehicleDetails, searchVehiclesAssignedDriver, updateInsuranceDetails,
     updateODO,
     updateRevenueLicense
 } from "../services/vehicleService";
@@ -14,7 +14,9 @@ export const addNewVehicleAction = createAction('ADD_NEW_VEHICLE');
 export const getVehicleAction = createAction('GET_VEHICLE');
 export const setVehicleDataAction = createAction('SET_VEHICLE_DATA');
 export const searchVehicleDataAction = createAction('SEARCH_VEHICLE_DATA');
+export const searchVehiclesAssignedDriverAction = createAction('SEARCH_VEHICLES_ASSIGNED_DRIVER');
 export const setEditModalContentAction = createAction('SET_EDIT_MODAL_CONTENT');
+export const setDriverAssignModalContentAction = createAction('SET_DRIVER_ASSIGN_MODAL_CONTENT');
 export const updateODOAction = createAction('UPDATE_ODO_VEHICLE');
 export const updateRevenueLicenseAction = createAction('UPDATE_REVENUE_LICENSE_DETAILS');
 export const updateInsuranceDetailsAction = createAction('UPDATE_INSURANCE_DETAILS');
@@ -97,19 +99,37 @@ const searchVehicleSaga = function* (action) {
     }
 }
 
+const searchVehiclesAssignedDriverSaga = function* (action) {
+    try {
+        //console.log(action.payload)
+        const response = yield call(searchVehiclesAssignedDriver , action.payload);
+        yield put(setVehicleDataAction(response.data.vehicles))
+        console.log(action.payload)
+
+        // if (action.payload.make == ""){
+        //     console.log("empty")
+        // }else {
+        //     console.log("not empty")
+        // }
+
+    } catch (e) {
+
+    }
+}
+
 const updateODOSaga = function* (action) {
     try {
         const response = yield call(updateODO, action.payload);
         let msg = ''
         if (response.data?.msg !== "" && response.data?.status === "ok") {
 
-            msg = response.data?.msg +
+            msg = response.data?.msg
                 console.log("fds", response.data?.msg)
             message.success(
                 {
                     content: msg,
                     style: {
-                        marginTop: '50vh',
+                        marginTop: '5vh',
                         color: 'green'
                     },
                 });
@@ -228,6 +248,7 @@ export const vehicleRootSaga = function* () {
     yield takeLatest(addNewVehicleAction, addNewVehicleSaga);
     yield takeLatest(getVehicleAction, getVehicleSaga)
     yield takeLatest(searchVehicleDataAction, searchVehicleSaga)
+    yield takeLatest(searchVehiclesAssignedDriverAction, searchVehiclesAssignedDriverSaga)
     yield takeLatest(updateODOAction, updateODOSaga)
     yield takeLatest(updateRevenueLicenseAction, updateRevenueLicenseSaga)
     yield takeLatest(updateInsuranceDetailsAction, updateInsuranceDetailsSaga)
@@ -250,6 +271,9 @@ export const vehicleReducer = createReducer(
         },
         [setEditModalContentAction]: (state, payload) => {
             return {...state, editModalContent: payload};
+        },
+        [setDriverAssignModalContentAction]: (state, payload) => {
+            return {...state, driverAssignModalContent: payload};
         },
     },
     initialState

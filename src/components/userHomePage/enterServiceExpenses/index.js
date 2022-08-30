@@ -2,24 +2,25 @@ import React, {useEffect, useState} from 'react';
 import {Button, Card, Col, DatePicker, Form, Input, Row, Upload} from "antd";
 import './style.css'
 import BreadCrumb from "../../../Comp/breadCrumb";
-import {useDispatch, useSelector} from "react-redux";
-import {CloudUploadOutlined, PlusOutlined} from "@ant-design/icons";
-import {enterExpensesAction} from "../../../models/expenseModel";
+import {useDispatch} from "react-redux";
+import {CloudUploadOutlined} from "@ant-design/icons";
+import {enterServiceExpensesAction} from "../../../models/expenseModel";
 
-const EnterExpenses = () => {
+const EnterServiceExpenses = () => {
     const dispatch = useDispatch();
     const [expenseForm] = Form.useForm();
     const [fileList, setFileList] = useState(null);
 
     function onFinish(values) {
         const nval= {...values, img:fileList}
-        dispatch(enterExpensesAction(nval));
+        dispatch(enterServiceExpensesAction(nval));
         expenseForm.resetFields()
         setFileList(null)
         expenseForm.setFieldsValue({registration_number: ''});
-        expenseForm.setFieldsValue({expense_type: 'maintenance'});
+        expenseForm.setFieldsValue({expense_type: 'service'});
         expenseForm.setFieldsValue({expense_date: ''});
-        expenseForm.setFieldsValue({expense_name: ''});
+        expenseForm.setFieldsValue({due_on: ''});
+        expenseForm.setFieldsValue({done_on: ''});
         expenseForm.setFieldsValue({expense_cost: ''});
         expenseForm.setFieldsValue({image: ''});
     }
@@ -36,7 +37,7 @@ const EnterExpenses = () => {
     }
 
     useEffect(() => {
-        expenseForm.setFieldsValue({expense_type: 'maintenance'});
+        expenseForm.setFieldsValue({expense_type: 'service'});
     }, []);
 
 
@@ -51,17 +52,17 @@ const EnterExpenses = () => {
                 >
                     <Row style={{width: '100%'}}>
                         <Col span={6}>
-                            <Form.Item name={'registration_number'} label="Registration number" initialValue={""}>
+                            <Form.Item name={'registration_number'} label="Registration number" initialValue={""} rules={[{required: true}]} >
                                 <Input/>
                             </Form.Item>
                         </Col>
                         <Col span={6} offset={1}>
-                            <Form.Item name={'expense_type'} label="Expense type" value initialValue={"maintenance"} >
+                            <Form.Item name={'expense_type'} label="Expense type" value initialValue={"maintenance"} rules={[{required: true}]}>
                                 <Input disabled/>
                             </Form.Item>
                         </Col>
                         <Col span={6} offset={1}>
-                            <Form.Item name={'expense_date'} label="Expense date" initialValue={""}>
+                            <Form.Item name={'expense_date'} label="Expense date" initialValue={""} rules={[{required: true}]}>
                                 <Input/>
                             </Form.Item>
                         </Col>
@@ -69,17 +70,22 @@ const EnterExpenses = () => {
 
                     <Row style={{width: '100%'}}>
                         <Col span={6}>
-                            <Form.Item name={'expense_name'} label="Expense name" initialValue={""}>
+                            <Form.Item name={'done_on'} label="Done on" initialValue={""} rules={[{required: true}]}>
                                 <Input/>
                             </Form.Item>
                         </Col>
                         <Col span={6} offset={1}>
-                            <Form.Item name={'expense_cost'} label="Expense cost" initialValue={""}>
+                            <Form.Item name={'due_on'} label="Due on" initialValue={""} rules={[{required: true}]}>
                                 <Input/>
                             </Form.Item>
                         </Col>
                         <Col span={6} offset={1}>
-                            <Form.Item name={"image"} label="Photo" rules={[{required: true}]}>
+                            <Form.Item name={'expense_cost'} label="Expense cost" initialValue={""} rules={[{required: true}]}>
+                                <Input/>
+                            </Form.Item>
+                        </Col>
+                        <Col span={6} >
+                            <Form.Item name={"image"} label="Photo" rules={[{required: true}]} >
                                 <Upload name="image"
                                         listType="text"
                                         defaultFileList={fileList}
@@ -115,4 +121,4 @@ const EnterExpenses = () => {
     );
 };
 
-export default EnterExpenses;
+export default EnterServiceExpenses;

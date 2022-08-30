@@ -1,5 +1,5 @@
 import './App.css';
-import React from "react";
+import React, {useEffect} from "react";
 import {faComments, faEdit} from '@fortawesome/free-solid-svg-icons';
 import {BrowserRouter, Switch, Route, HashRouter} from "react-router-dom";
 import {library} from '@fortawesome/fontawesome-svg-core';
@@ -11,6 +11,7 @@ import {Provider} from 'react-redux';
 import {store} from './store';
 import ProtectedRoute from "./utility/ProtectedRoutes";
 import BreadCrumb from "./Comp/breadCrumb";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 library.add(
@@ -19,6 +20,7 @@ library.add(
 )
 
 function App() {
+
     return (
         <Provider store={store}>
             <BrowserRouter>

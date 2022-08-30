@@ -7,6 +7,9 @@ import UpdateOdoMeter from "./UpdateOdoMeter";
 import EnterRevenueLicenseDetails from "./enterRevenueLicenseDetails";
 import EnterinsuranceDetails from "./EnterInsuranceDetails";
 import EnterExpenses from "./enterExpenses";
+import EnterFuelExpenses from "./enterFuelExpenses";
+import EnterServiceExpenses from "./enterServiceExpenses";
+import AssignDriversToVehicles from "./assignDriversToVehicles";
 
 const UserHomePage = () => {
     return (
@@ -15,6 +18,15 @@ const UserHomePage = () => {
             <div>
                 <HashRouter basename={"/userHome"}>
                     <Switch>
+                        <Route  path={'/Assign-Drivers-To-Vehicles'}>
+                            <AssignDriversToVehicles/>
+                        </Route>
+                        <Route  path={'/Enter-Fuel-costs'}>
+                            <EnterFuelExpenses/>
+                        </Route>
+                        <Route  path={'/Enter-Service-costs'}>
+                            <EnterServiceExpenses/>
+                        </Route>
                         <Route  path={'/Enter-maintenance-costs'}>
                             <EnterExpenses/>
                         </Route>

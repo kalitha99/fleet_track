@@ -9,6 +9,9 @@ export const getVehicleDetails = (payload) => {
 export const searchVehicleDetails = (payload) => {
     return AxiosInstance.post('/vehicles/searchVehicles', payload);
 };
+export const searchVehiclesAssignedDriver = (payload) => {
+    return AxiosInstance.post('/vehicles/searchVehiclesAssignedDriver', payload);
+};
 export const updateODO = (payload) => {
     return AxiosInstance.post('/vehicles/updateOdo', payload);
 };

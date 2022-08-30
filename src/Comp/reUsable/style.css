@@ -5,15 +5,23 @@
     border: none !important;
     border-radius: 10px !important;
     background-color: #044476 !important;
+    flex: auto;
+    text-align: center;
+
 }
 
 .card p {
+    text-align: -webkit-center;
     white-space: normal;
-    line-height: 16px;
     font-weight: 500;
     font-size: 14px;
+    padding-left: 15px;
+    padding-top: 15px;
+
 }
 
 .card:hover{
     background-color: #0671c4 !important;
 }
+
+

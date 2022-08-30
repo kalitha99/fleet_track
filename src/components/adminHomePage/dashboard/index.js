@@ -12,57 +12,50 @@ const Dashboard = () => {
     const history = useHistory();
 
     return (
-        <div>
-                <BreadCrumb />
-                <Row justify={{auto: true}}>
-                    <Col offset={1} span={4}>
-                        <CustomCard
-                            btnname="Add new vehicle"
-                            onClick={() => history.push('/add-Vehicle')}
-                        />
-                    </Col>
-                    <Col  span={4}>
-                        <CustomCard
-                            btnname="Edit vehicle details"
-                        />
-                    </Col>
-                    <Col  span={4}>
-                        <CustomCard
-                            btnname="View all vehicle details"
-                            onClick={()=>history.push('/View-Vehicle-Details')}
-                        />
-                    </Col>
-                    <Col  span={4}>
-                        <CustomCard
-                            btnname="Add drivers"
-                            onClick={() => history.push('/add-Driver')}
-                        />
-                    </Col>
-                    <Col  span={4}>
-                        <CustomCard
-                            btnname="Edit Driver details"
-                        />
-                    </Col>
-                </Row>
-                <Row>
-                    <Col offset={1} span={4}>
-                        <CustomCard
-                            btnname="View all driver details"
-                            onClick={() => history.push('/View-Driver-Details')}
-                        />
-                    </Col>
-                    <Col  span={4}>
-                        <CustomCard
-                            btnname="Assign Drivers to vehicles"
-                        />
-                    </Col>
-                    <Col  span={4}>
-                        <CustomCard
-                            btnname="View assigned vehicles and drivers"
-                        />
-                    </Col>
-                </Row>
-                <ChatBot/>
+        <div className="container">
+            <BreadCrumb/>
+            <div className="container">
+                <div className="row hidden-md-up">
+
+                    <CustomCard
+                        btnname="Add new vehicle"
+                        onClick={() => history.push('/add-Vehicle')}
+                    />
+
+                    <CustomCard
+                        btnname="Edit vehicle details"
+                    />
+
+                    <CustomCard
+                        btnname="View all vehicle details"
+                        onClick={() => history.push('/View-Vehicle-Details')}
+                    />
+
+                    <CustomCard
+                        btnname="Add drivers"
+                        onClick={() => history.push('/add-Driver')}
+                    />
+
+                    <CustomCard
+                        btnname="Edit Driver details"
+                    />
+
+                    <CustomCard
+                        btnname="View all driver details"
+                        onClick={() => history.push('/View-Driver-Details')}
+                    />
+
+                    <CustomCard
+                        btnname="Assign Drivers to vehicles"
+                    />
+
+                    <CustomCard
+                        btnname="View assigned vehicles and drivers"
+                    />
+
+                </div>
+            </div>
+            <ChatBot/>
 
         </div>
     )

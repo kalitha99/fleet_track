@@ -4,22 +4,22 @@ import './style.css'
 import BreadCrumb from "../../../Comp/breadCrumb";
 import {useDispatch, useSelector} from "react-redux";
 import {CloudUploadOutlined, PlusOutlined} from "@ant-design/icons";
-import {enterExpensesAction} from "../../../models/expenseModel";
+import {enterFuelExpensesAction} from "../../../models/expenseModel";
 
-const EnterExpenses = () => {
+const EnterServiceExpenses = () => {
     const dispatch = useDispatch();
     const [expenseForm] = Form.useForm();
     const [fileList, setFileList] = useState(null);
 
     function onFinish(values) {
-        const nval= {...values, img:fileList}
-        dispatch(enterExpensesAction(nval));
+        const nval = {...values, img: fileList}
+        dispatch(enterFuelExpensesAction(nval));
         expenseForm.resetFields()
         setFileList(null)
         expenseForm.setFieldsValue({registration_number: ''});
-        expenseForm.setFieldsValue({expense_type: 'maintenance'});
+        expenseForm.setFieldsValue({expense_type: 'fuel'});
         expenseForm.setFieldsValue({expense_date: ''});
-        expenseForm.setFieldsValue({expense_name: ''});
+        expenseForm.setFieldsValue({number_of_liters: ''});
         expenseForm.setFieldsValue({expense_cost: ''});
         expenseForm.setFieldsValue({image: ''});
     }
@@ -29,17 +29,15 @@ const EnterExpenses = () => {
         setFileList(e.file);
     };
 
-    const dummyRequest = ({ file, onSuccess }) => {
+    const dummyRequest = ({file, onSuccess}) => {
         setTimeout(() => {
             onSuccess("ok");
         }, 0);
     }
 
     useEffect(() => {
-        expenseForm.setFieldsValue({expense_type: 'maintenance'});
+        expenseForm.setFieldsValue({expense_type: 'fuel'});
     }, []);
-
-
 
 
     return (
@@ -56,7 +54,7 @@ const EnterExpenses = () => {
                             </Form.Item>
                         </Col>
                         <Col span={6} offset={1}>
-                            <Form.Item name={'expense_type'} label="Expense type" value initialValue={"maintenance"} >
+                            <Form.Item name={'expense_type'} label="Expense type"  initialValue={"fuel"}>
                                 <Input disabled/>
                             </Form.Item>
                         </Col>
@@ -69,7 +67,7 @@ const EnterExpenses = () => {
 
                     <Row style={{width: '100%'}}>
                         <Col span={6}>
-                            <Form.Item name={'expense_name'} label="Expense name" initialValue={""}>
+                            <Form.Item name={'number_of_liters'} label="number of liters " initialValue={""}>
                                 <Input/>
                             </Form.Item>
                         </Col>
@@ -83,7 +81,7 @@ const EnterExpenses = () => {
                                 <Upload name="image"
                                         listType="text"
                                         defaultFileList={fileList}
-                                        // type={"file"}
+                                    // type={"file"}
                                         onChange={(e) => handleChange(e)}
                                         multiple={false}
                                         customRequest={dummyRequest}
@@ -115,4 +113,4 @@ const EnterExpenses = () => {
     );
 };
 
-export default EnterExpenses;
+export default EnterServiceExpenses;

@@ -18,7 +18,8 @@ const ViewAllVehicles = () => {
     return (
         <div>
             <BreadCrumb />
-            <Card>
+            <Card style={{overflowX: "auto"}}>
+
                 <Table
                     id={"VehicleDataTable"}
                     columns={viewAllVehicleColumns()}

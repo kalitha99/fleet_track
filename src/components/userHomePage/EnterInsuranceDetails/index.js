@@ -100,7 +100,7 @@ const EnterinsuranceDetails = () => {
                     </Row>
                 </Form>
             </Card>
-            <Card>
+            <Card style={{overflowX: "auto"}}>
                 <Table
                     id={"VehicleDataTable"}
                     columns={viewAllVehicleColumns(

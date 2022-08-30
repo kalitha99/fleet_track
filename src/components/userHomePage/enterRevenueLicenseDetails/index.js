@@ -22,7 +22,13 @@ const EnterRevenueLicenseDetails = () => {
     const vehicleDataUpdated = vehicleData?.map((item) => ({key: item.registration_number, ...item}));
 
     function onFinish(values) {
-        dispatch(searchVehicleDataAction(values));
+        const Values ={
+            registration_number: values.registration_number,
+            make: values.make,
+            model: values.model,
+            assigned_driver:""
+        }
+        dispatch(searchVehicleDataAction(Values));
     }
 
     useEffect(() => {
@@ -33,7 +39,8 @@ const EnterRevenueLicenseDetails = () => {
         const data = {
             registration_number: "",
             make: "",
-            model: ""
+            model: "",
+            assigned_driver:""
         }
         dispatch(searchVehicleDataAction(data));
     }, []);
@@ -57,7 +64,8 @@ const EnterRevenueLicenseDetails = () => {
         const data = {
             registration_number: searchForm.getFieldValue('registration_number'),
             make: searchForm.getFieldValue('make'),
-            model: searchForm.getFieldValue('model')
+            model: searchForm.getFieldValue('model'),
+            assigned_driver:""
         }
         dispatch(updateRevenueLicenseAction(values));
         dispatch(searchVehicleDataAction(data));
@@ -74,17 +82,17 @@ const EnterRevenueLicenseDetails = () => {
                     <Row style={{width: '100%'}}>
                         <Col span={6}>
                             <Form.Item name={'registration_number'} label="Registration number" initialValue={""}>
-                                <Input/>
+                                <Input allowClear/>
                             </Form.Item>
                         </Col>
                         <Col span={6} offset={1}>
                             <Form.Item name={'make'} label="Make" initialValue={""}>
-                                <Input/>
+                                <Input allowClear/>
                             </Form.Item>
                         </Col>
                         <Col span={6} offset={1}>
                             <Form.Item name={'model'} label="Model" initialValue={""}>
-                                <Input/>
+                                <Input allowClear/>
                             </Form.Item>
                         </Col>
                     </Row>
