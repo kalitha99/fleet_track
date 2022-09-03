@@ -1,17 +1,18 @@
 import {createAction, createReducer} from 'redux-act';
 import {call, put, takeLatest} from 'redux-saga/effects';
-import {loginUser} from "../services/authServices";
+import {handleSignup, loginUser} from "../services/authServices";
 import {message} from 'antd';
 
 export const loginUserAction = createAction('LOGING_USER');
+export const signUpAction = createAction('SIGNUP_USER');
 export const setLoggedUserDataAction = createAction('SET_LOGGED_USER_DATA');
 export const setUserDataAction = createAction('SET_USER_DATA');
-
 
 
 const ACCESS_TOKEN = 'ACCESS_TOKEN';
 const USERNAME = 'USERNAME';
 const ROLE_TYPE = 'ROLE_TYPE';
+const EMAIL = 'EMAIL';
 
 //SAGAS
 const loginUserSaga = function* (action) {
@@ -27,25 +28,30 @@ const loginUserSaga = function* (action) {
         sessionStorage.setItem(ACCESS_TOKEN, response.data.accessToken);
         sessionStorage.setItem(USERNAME, response.data.name);
         sessionStorage.setItem(ROLE_TYPE, response.data.roles);
+        sessionStorage.setItem(EMAIL, response.data.email);
         yield put(setLoggedUserDataAction({
             name: sessionStorage.USERNAME,
             accessToken: sessionStorage.ACCESS_TOKEN,
-            roleType: sessionStorage.ROLE_TYPE
+            roleType: sessionStorage.ROLE_TYPE,
+            email: sessionStorage.getItem(EMAIL)
         }));
         if (response.data.roles === 'admin') {
-             action.payload.history.push("/adminHome")
+            action.payload.history.push("/adminHome")
             console.log("admin")
-        } else if (response.data.roles === 'user') {
+        } else if (response.data.roles == 'driver') {
+            console.log(response.data.roles)
+            action.payload.history.push("/driverHome")
+        }else if (response.data.roles === 'user') {
             action.payload.history.push("/userHome")
         }
     } catch (response) {
-        let msg =''
+        let msg = ''
         if (response.response.data?.msg !== "") {
 
-             msg = response.response.data?.msg
+            msg = response.response.data?.msg
         }
 
-        console.log("fds",response.response.data?.msg)
+        console.log("fds", response.response.data?.msg)
         message.error(
             {
                 content: msg,
@@ -55,6 +61,42 @@ const loginUserSaga = function* (action) {
                 },
             });
     }
+}
+
+
+const signupSaga = function* (action) {
+
+    try {
+        const response = yield call(handleSignup, action.payload);
+
+        let msg = ''
+        if (response.data?.msg !== "" && response.data?.status === "ok") {
+
+            msg = response.data?.msg
+            console.log("fds", response.data?.msg)
+            message.success(
+                {
+                    content: msg,
+                    style: {
+                        marginTop: '50vh',
+                        color: 'green'
+                    },
+                });
+        } else {
+            msg = response.data?.msg
+            message.error(
+                {
+                    content: msg,
+                    style: {
+                        marginTop: '50vh',
+                        color: 'red'
+                    },
+                });
+        }
+    } catch (e) {
+
+    }
+
 }
 
 
@@ -75,6 +117,7 @@ const setUserDataSaga = function* (action) {
 export const authRootSaga = function* () {
     yield takeLatest(loginUserAction, loginUserSaga);
     yield takeLatest(setUserDataAction, setUserDataSaga);
+    yield takeLatest(signUpAction, signupSaga);
 };
 
 const initialState = {

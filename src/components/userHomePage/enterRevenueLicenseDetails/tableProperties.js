@@ -53,7 +53,7 @@ export const viewAllVehicleColumns = (
             dataIndex: 'revenue_license_expire_date',
             key: 'revenue_license_expire_date',
         },
-        {title: 'Enter revenue license Reading',
+        {title: 'Enter revenue license Details',
             key: 'action',
             render: (text, row) => (
             <Space size="middle">

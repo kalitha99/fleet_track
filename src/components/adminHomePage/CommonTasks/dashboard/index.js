@@ -1,11 +1,11 @@
 import React from 'react';
 import "./style.css"
-import ChatBot from "../../../Comp/chatBot";
-import CustomCard from "../../../Comp/reUsable/card";
-import BreadCrumb from "../../../Comp/breadCrumb";
+import ChatBot from "../../../../Comp/chatBot";
+import CustomCard from "../../../../Comp/reUsable/card";
+import BreadCrumb from "../../../../Comp/breadCrumb";
 import {useHistory} from "react-router-dom";
 
-const UserDashboard = () => {
+const CommonTaskDashboard = () => {
     const history = useHistory();
 
     return (
@@ -15,54 +15,54 @@ const UserDashboard = () => {
                 <div className="row hidden-md-up">
                     <CustomCard
                         btnname="View all vehicle details"
-                        onClick={() => history.push('/View-Vehicle-Details')}
+                        onClick={() => history.push('/Common-tasks/View-Vehicle-Details')}
                     />
 
                     <CustomCard
                         btnname="Enter vehicle ODO reading"
-                        onClick={() => history.push('/Update-Latest-ODO')}
+                        onClick={() => history.push('/Common-tasks/Update-Latest-ODO')}
                     />
 
                     <CustomCard
                         btnname="Enter vehicle maintenance costs"
-                        onClick={() => history.push('/Enter-maintenance-costs')}
+                        onClick={() => history.push('/Common-tasks/Enter-maintenance-costs')}
                     />
 
                     <CustomCard
                         btnname="Enter fuel expenses"
-                        onClick={() => history.push('/Enter-Fuel-costs')}
+                        onClick={() => history.push('/Common-tasks/Enter-Fuel-costs')}
                     />
 
                     <CustomCard
                         btnname="Enter vehicles Service expenses "
-                        onClick={() => history.push('/Enter-Service-costs')}
+                        onClick={() => history.push('/Common-tasks/Enter-Service-costs')}
                     />
 
                     <CustomCard
                         btnname="Enter vehicles revenue license details "
-                        onClick={() => history.push('/Update-revenue-license')}
+                        onClick={() => history.push('/Common-tasks/Update-revenue-license')}
                     />
 
                     <CustomCard
                         btnname="Enter vehicles Insurance details "
-                        onClick={() => history.push('/Update-insurance-details')}
+                        onClick={() => history.push('/Common-tasks/Update-insurance-details')}
                     />
 
                     <CustomCard
                         btnname="View assigned vehicles and drivers"
-                        onClick={() => history.push('/view-Assigned-Vehicles-And-Drivers')}
+                        onClick={() => history.push('/Common-tasks/view-Assigned-Vehicles-And-Drivers')}
                     />
                     <CustomCard
                         btnname="Assign Drivers To Vehicles"
-                        onClick={() => history.push('/Assign-Drivers-To-Vehicles')}
+                        onClick={() => history.push('/Common-tasks/Assign-Drivers-To-Vehicles')}
                     />
                     <CustomCard
                         btnname="Assign Trips"
-                        onClick={() => history.push('/Assign-Trips')}
+                        onClick={() => history.push('/Common-tasks/Assign-Trips')}
                     />
                     <CustomCard
                         btnname="View Trips"
-                        onClick={() => history.push('/View-Trips')}
+                        onClick={() => history.push('/Common-tasks/View-Trips')}
                     />
 
                 </div>
@@ -74,4 +74,4 @@ const UserDashboard = () => {
     )
 }
 
-export default UserDashboard;
+export default CommonTaskDashboard;

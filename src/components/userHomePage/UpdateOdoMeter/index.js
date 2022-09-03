@@ -16,11 +16,14 @@ const UpdateOdoMeter = () => {
     const vehicleData = useSelector((state) => state.vehicleData.vehicleDetails);
     let editODO = useSelector((state) => state.vehicleData.editModalContent);
     //To add key for table rows
-    const vehicleDataUpdated = vehicleData?.map((item) => ({key: item.registration_number, ...item}));
+    let vehicleDataUpdate = vehicleData?.map((item) => ({key: item.registration_number, ...item}));
+
 
     function onFinish(values) {
+        values.assigned_driver=""
         dispatch(searchVehicleDataAction(values));
     }
+
 
     useEffect(() => {
         editOdoForm.setFieldsValue({registration_number: editODO?.registration_number});
@@ -31,7 +34,8 @@ const UpdateOdoMeter = () => {
         const data = {
             registration_number: "",
             make: "",
-            model: ""
+            model: "",
+            assigned_driver:""
         }
         dispatch(searchVehicleDataAction(data));
     }, []);
@@ -55,12 +59,16 @@ const UpdateOdoMeter = () => {
         const data = {
             registration_number: searchForm.getFieldValue('registration_number'),
             make: searchForm.getFieldValue('make'),
-            model: searchForm.getFieldValue('model')
+            model: searchForm.getFieldValue('model'),
+            assigned_driver:""
         }
         dispatch(updateODOAction(values));
         dispatch(searchVehicleDataAction(data));
+        editOdoForm.setFieldsValue({new_odo: ""});
+        handleOk()
     }
-console.log(editODO)
+
+    console.log(editODO)
     return (
         <div>
             <BreadCrumb/>
@@ -103,7 +111,7 @@ console.log(editODO)
                         handleAddOdoModalShow,
                         editOdoForm
                     )}
-                    dataSource={vehicleDataUpdated}
+                    dataSource={vehicleDataUpdate}
                 />
             </Card>
 
@@ -115,11 +123,13 @@ console.log(editODO)
                           preserve={false}
                     >
 
-                        <Form.Item name={'registration_number'} label="Registration number" initialValue={editODO?.registration_number}>
+                        <Form.Item name={'registration_number'} label="Registration number"
+                                   initialValue={editODO?.registration_number}>
                             <Input disabled/>
                         </Form.Item>
 
-                        <Form.Item name={'latest_odo_reading'} label="ODO Reading" initialValue={editODO?.latest_odo_reading}>
+                        <Form.Item name={'latest_odo_reading'} label="ODO Reading"
+                                   initialValue={editODO?.latest_odo_reading}>
                             <Input disabled/>
                         </Form.Item>
 

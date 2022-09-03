@@ -12,6 +12,7 @@ import {store} from './store';
 import ProtectedRoute from "./utility/ProtectedRoutes";
 import BreadCrumb from "./Comp/breadCrumb";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import DriverHome from "./components/driverHomePage";
 
 
 library.add(
@@ -36,6 +37,9 @@ function App() {
                         </ProtectedRoute>
                         <ProtectedRoute exact path={"/userHome"}>
                             <UserHomePage/>
+                        </ProtectedRoute>
+                        <ProtectedRoute exact path={"/driverHome"}>
+                            <DriverHome/>
                         </ProtectedRoute>
                     </Switch>
             </BrowserRouter>

@@ -1,15 +1,24 @@
 import {createAction, createReducer} from 'redux-act';
 import {call, put, takeLatest} from 'redux-saga/effects';
 import {message} from 'antd';
-import {addNewDriver, assignVehicleToDriver, getVehicleDetails, searchDrivers} from "../services/driverService";
+import {
+    addNewDriver,
+    assignVehicleToDriver, getDriverById,
+    getVehicleDetails,
+    searchAssignedDrivers,
+    searchDrivers
+} from "../services/driverService";
 
 
 
 export const addNewDriverAction = createAction('ADD_NEW_DRIVER');
 export const getDriversAction = createAction('GET_DRIVERS');
+export const getDriversByEmailAction = createAction('GET_DRIVERS_BY_EMAIL');
 export const setDriverDataAction = createAction('SET_DRIVER_DATA');
 export const searchDriversAction = createAction('SEARCH_DRIVERS');
+export const searchAssignedDriversAction = createAction('SEARCH_ASSIGNED_DRIVERS');
 export const assignVehicleToDriverAction = createAction('ASSIGN_VEHICLES_TO_DRIVERS');
+
 
 
 const addNewDriverSaga = function* (action) {
@@ -37,6 +46,17 @@ const addNewDriverSaga = function* (action) {
     }
 }
 
+const getDriversByEmailSaga = function* (action) {
+    try {
+        console.log("driver")
+        const response = yield call(getDriverById, action.payload);
+        yield put(setDriverDataAction(response.data.drivers))
+        console.log(response)
+    } catch (e) {
+
+    }
+}
+
 const getDriversSaga = function* (action) {
     try {
         console.log("driver")
@@ -52,6 +72,26 @@ const searchDriversSaga = function* (action) {
     try {
         console.log("Search driver")
         const response = yield call(searchDrivers, action.payload);
+        yield put(setDriverDataAction(response.data.drivers))
+        console.log(response)
+    } catch (e) {
+        if (e.response.status==403){
+            message.error(
+                {
+                    content: "Session expired Re login",
+                    style: {
+                        marginTop: '50vh',
+                        color: 'red'
+                    },
+                });
+        }
+    }
+}
+
+const searchAssignedDriversSaga = function* (action) {
+    try {
+        console.log("Search driver")
+        const response = yield call(searchAssignedDrivers, action.payload);
         yield put(setDriverDataAction(response.data.drivers))
         console.log(response)
     } catch (e) {
@@ -102,11 +142,16 @@ const assignVehicleToDriverSaga = function* (action) {
     }
 }
 
+
+
 export const driverRootSaga = function* () {
     yield takeLatest(addNewDriverAction, addNewDriverSaga);
     yield takeLatest(getDriversAction, getDriversSaga)
+    yield takeLatest(getDriversByEmailAction, getDriversByEmailSaga)
     yield takeLatest(searchDriversAction, searchDriversSaga)
+    yield takeLatest(searchAssignedDriversAction, searchAssignedDriversSaga)
     yield takeLatest(assignVehicleToDriverAction, assignVehicleToDriverSaga)
+
 
 };
 

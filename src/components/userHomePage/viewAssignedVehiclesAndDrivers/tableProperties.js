@@ -1,17 +1,24 @@
-import { Space, Table, Tag } from 'antd';
+import {Button, Space, Table, Tag} from 'antd';
 import React from 'react';
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 
 export const viewAllDriverColumns = (
-
+    unAssignVehicle
 ) => {
     return [
         {
             title: 'No',
             dataIndex: 'no',
             key: 'no',
-            width:95,
+            width: 95,
             render: (value, item, index) => (1 - 1) * 10 + index + 1
+        },
+        {
+            title: '_id',
+            dataIndex: '_id',
+            key: 'id',
+            hidden: true
         },
         {
             title: 'Name',
@@ -35,28 +42,41 @@ export const viewAllDriverColumns = (
 
         },
         {
-            title: 'Address',
-            dataIndex: 'address',
-            key: 'address',
+            title: 'assigned vehicle',
+            dataIndex: 'assigned_vehicle',
+            key: 'assigned_vehicle',
 
         },
         {
-            title: 'Phone no.',
-            dataIndex: 'tpNo',
-            key: 'tpNo',
+            title: 'Unassign vehicle',
+            key: 'action',
+            render: (text, row) => (
+                <Space size="middle">
 
+
+                    <Button type="link">
+                        <FontAwesomeIcon
+                            icon="edit"
+                            data-tip="Download Master Data File"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                let data={
+                                    name:row._id,
+                                    registration_number:row.assigned_vehicle
+                                }
+                                unAssignVehicle( data)
+                                // handleAddOdoModalShow({
+                                //     name:row.name,
+                                //     id:row._id,
+                                // })
+                            }}
+
+                        >
+                        </FontAwesomeIcon>
+                    </Button>
+
+                </Space>
+            ),
         },
-        {
-            title: 'License no.',
-            dataIndex: 'licenseNum',
-            key: 'licenseNum',
-
-        },
-        {
-            title: 'Blood type',
-            dataIndex: 'bloodGroup',
-            key: 'bloodGroup',
-
-        }
-    ];
+    ].filter(item => !item.hidden)
 };

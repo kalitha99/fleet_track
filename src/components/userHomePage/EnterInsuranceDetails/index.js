@@ -22,6 +22,7 @@ const EnterinsuranceDetails = () => {
     const vehicleDataUpdated = vehicleData?.map((item) => ({key: item.registration_number, ...item}));
 
     function onFinish(values) {
+        values.assigned_driver=""
         dispatch(searchVehicleDataAction(values));
     }
 
@@ -33,7 +34,8 @@ const EnterinsuranceDetails = () => {
         const data = {
             registration_number: "",
             make: "",
-            model: ""
+            model: "",
+            assigned_driver:""
         }
         dispatch(searchVehicleDataAction(data));
     }, []);
@@ -57,10 +59,15 @@ const EnterinsuranceDetails = () => {
         const data = {
             registration_number: searchForm.getFieldValue('registration_number'),
             make: searchForm.getFieldValue('make'),
-            model: searchForm.getFieldValue('model')
+            model: searchForm.getFieldValue('model'),
+            assigned_driver:""
         }
         dispatch(updateInsuranceDetailsAction(values));
         dispatch(searchVehicleDataAction(data));
+        editinsuranceDetailsForm.setFieldsValue({insurance_num: ""});
+        editinsuranceDetailsForm.setFieldsValue({insurance_issue_date: ""});
+        editinsuranceDetailsForm.setFieldsValue({insurance_expire_date: ""});
+        handleOk()
     }
 
     console.log(editRevenueLicense)

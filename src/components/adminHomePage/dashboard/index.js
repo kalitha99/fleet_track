@@ -21,9 +21,9 @@ const Dashboard = () => {
                         btnname="Add new vehicle"
                         onClick={() => history.push('/add-Vehicle')}
                     />
-
                     <CustomCard
-                        btnname="Edit vehicle details"
+                        btnname="Create New Login"
+                        onClick={() => history.push('/Create-New-Login')}
                     />
 
                     <CustomCard
@@ -37,21 +37,19 @@ const Dashboard = () => {
                     />
 
                     <CustomCard
-                        btnname="Edit Driver details"
+                        btnname="View all driver details"
+                        onClick={() => history.push('/View-All-Drivers')}
                     />
 
                     <CustomCard
                         btnname="View all driver details"
-                        onClick={() => history.push('/View-Driver-Details')}
+                        onClick={() => history.push('/View-All-Drivers')}
+                    />
+                    <CustomCard
+                        btnname="Common tasks"
+                        onClick={() => history.push('/Common-tasks')}
                     />
 
-                    <CustomCard
-                        btnname="Assign Drivers to vehicles"
-                    />
-
-                    <CustomCard
-                        btnname="View assigned vehicles and drivers"
-                    />
 
                 </div>
             </div>

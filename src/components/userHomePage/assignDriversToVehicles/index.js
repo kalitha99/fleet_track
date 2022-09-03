@@ -117,6 +117,12 @@ const handleAssignDriversModalShow2 = (data) => {
 
         dispatch(assignVehicleToDriverAction(values));
 
+        const data2 = {
+            name:"",
+            assigned_vehicle: "unassigned"
+        }
+        dispatch(searchDriversAction(data2));
+
         const data = {
             registration_number: "",
             make: "",
@@ -124,12 +130,6 @@ const handleAssignDriversModalShow2 = (data) => {
             assigned_driver: "unassigned"
         }
         dispatch(searchVehicleDataAction(data));
-
-        const data2 = {
-            name:"",
-            assigned_vehicle: "unassigned"
-        }
-        dispatch(searchDriversAction(data2));
         assignVehicleToDriverForm.setFieldsValue({name: ""})
         handleOk()
     }

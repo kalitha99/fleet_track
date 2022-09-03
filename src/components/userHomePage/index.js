@@ -1,7 +1,6 @@
 import React from 'react';
-import {BrowserRouter, Switch, Route, HashRouter} from "react-router-dom";
+import {BrowserRouter, Switch, Route, HashRouter, Link} from "react-router-dom";
 import Navbar from "../../Comp/NavBar";
-import Userdashboard from "./dashboard";
 import ViewAllVehicles from "../adminHomePage/viewAllVehicles";
 import UpdateOdoMeter from "./UpdateOdoMeter";
 import EnterRevenueLicenseDetails from "./enterRevenueLicenseDetails";
@@ -10,6 +9,12 @@ import EnterExpenses from "./enterExpenses";
 import EnterFuelExpenses from "./enterFuelExpenses";
 import EnterServiceExpenses from "./enterServiceExpenses";
 import AssignDriversToVehicles from "./assignDriversToVehicles";
+import ViewAssignedVehiclesAndDrivers from "./viewAssignedVehiclesAndDrivers";
+import ViewAndAssignTrips from "./ViewAndAssignTrips";
+import ViewTrips from "./viewAllTrips";
+import UserDashboard from "./dashboard";
+import {Breadcrumb} from "antd";
+import HomeOutlined from "@ant-design/icons/lib/icons/HomeOutlined";
 
 const UserHomePage = () => {
     return (
@@ -18,6 +23,16 @@ const UserHomePage = () => {
             <div>
                 <HashRouter basename={"/userHome"}>
                     <Switch>
+
+                        <Route  path={'/View-Trips'}>
+                            <ViewTrips/>
+                        </Route>
+                        <Route  path={'/Assign-Trips'}>
+                            <ViewAndAssignTrips/>
+                        </Route>
+                        <Route  path={'/view-Assigned-Vehicles-And-Drivers'}>
+                            <ViewAssignedVehiclesAndDrivers/>
+                        </Route>
                         <Route  path={'/Assign-Drivers-To-Vehicles'}>
                             <AssignDriversToVehicles/>
                         </Route>
@@ -42,8 +57,8 @@ const UserHomePage = () => {
                         <Route  path={'/View-Vehicle-Details'}>
                             <ViewAllVehicles/>
                         </Route>
-                        <Route exact path={"/"}>
-                            <Userdashboard/>
+                        <Route  exact path={"/"}>
+                            <UserDashboard/>
                         </Route>
                     </Switch>
                 </HashRouter>

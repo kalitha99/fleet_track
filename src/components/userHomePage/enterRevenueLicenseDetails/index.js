@@ -69,6 +69,10 @@ const EnterRevenueLicenseDetails = () => {
         }
         dispatch(updateRevenueLicenseAction(values));
         dispatch(searchVehicleDataAction(data));
+        editRevenueLicenseForm.setFieldsValue({revenue_license_num: ""});
+        editRevenueLicenseForm.setFieldsValue({revenue_license_issue_date: ""});
+        editRevenueLicenseForm.setFieldsValue({revenue_license_expire_date: ""});
+        handleOk()
     }
 
     console.log(editRevenueLicense)
