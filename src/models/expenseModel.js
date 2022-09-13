@@ -44,8 +44,8 @@ const enterExpensesSaga = function* (action) {
                     },
                 });
         }
-    } catch (err) {
-
+    } catch (e) {
+        message.error(e.message);
 
     }
 }
@@ -86,8 +86,8 @@ const enterFuelExpensesSaga = function* (action) {
                     },
                 });
         }
-    } catch (err) {
-
+    } catch (e) {
+        message.error(e.message);
 
     }
 }
@@ -129,8 +129,8 @@ const enterServiceExpensesSaga = function* (action) {
                     },
                 });
         }
-    } catch (err) {
-
+    } catch (e) {
+        message.error(e.message);
 
     }
 }
