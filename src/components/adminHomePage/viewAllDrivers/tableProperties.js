@@ -1,9 +1,10 @@
-import { Space, Table, Tag } from 'antd';
+import {Button, Space, Table, Tag} from 'antd';
 import React from 'react';
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 
 export const viewAllDriverColumns = (
-
+    handleEditDriverDetailsModalShow
 ) => {
     return [
         {
@@ -57,6 +58,38 @@ export const viewAllDriverColumns = (
             dataIndex: 'bloodGroup',
             key: 'bloodGroup',
 
-        }
+        },
+        {title: 'Edit Details',
+            key: 'action',
+            render: (text, row) => (
+                <Space size="middle">
+
+                    <Button type="link" disabled={sessionStorage.ROLE_TYPE !== "admin"}>
+                        <FontAwesomeIcon
+                            icon="edit"
+                            data-tip="Download Master Data File"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                handleEditDriverDetailsModalShow({
+                                    id:row._id,
+                                    name:row.name,
+                                    email:row.email,
+                                    age:row.age,
+                                    nic:row.nic,
+                                    address:row.address,
+                                    tpNo:row.tpNo,
+                                    licenseNum:row.licenseNum,
+                                    bloodGroup:row.bloodGroup,
+                                    assigned_vehicle:row.assigned_vehicle,
+                                })
+                            }}
+
+                        >
+                        </FontAwesomeIcon>
+                    </Button>
+
+                </Space>
+            ),
+        },
     ];
 };

@@ -6,7 +6,7 @@ import {
     assignVehicleToDriver, getDriverById,
     getVehicleDetails,
     searchAssignedDrivers,
-    searchDrivers
+    searchDrivers, updateDriver, updatePw
 } from "../services/driverService";
 
 
@@ -18,6 +18,8 @@ export const setDriverDataAction = createAction('SET_DRIVER_DATA');
 export const searchDriversAction = createAction('SEARCH_DRIVERS');
 export const searchAssignedDriversAction = createAction('SEARCH_ASSIGNED_DRIVERS');
 export const assignVehicleToDriverAction = createAction('ASSIGN_VEHICLES_TO_DRIVERS');
+export const updateDriverAction = createAction('UPDATE_DRIVERS');
+export const updateDriverPwAction = createAction('UPDATE_DRIVERS_PW');
 
 
 
@@ -42,7 +44,7 @@ const addNewDriverSaga = function* (action) {
             });
     }
     catch (e) {
-
+        message.error(e.message);
     }
 }
 
@@ -53,7 +55,7 @@ const getDriversByEmailSaga = function* (action) {
         yield put(setDriverDataAction(response.data.drivers))
         console.log(response)
     } catch (e) {
-
+        message.error(e.message);
     }
 }
 
@@ -64,7 +66,7 @@ const getDriversSaga = function* (action) {
         yield put(setDriverDataAction(response.data.drivers))
         console.log(response)
     } catch (e) {
-
+        message.error(e.message);
     }
 }
 
@@ -139,6 +141,57 @@ const assignVehicleToDriverSaga = function* (action) {
 
     } catch (e) {
         console.log(e)
+        message.error(e.message);
+    }
+}
+
+const updateDriverSaga = function* (action) {
+
+    try {
+        const response = yield call(updateDriver, action.payload);
+        let msg =''
+        if (response.data?.msg !== "") {
+
+            msg = response.data?.msg
+        }
+
+        console.log("fds",response.data?.msg)
+        message.success(
+            {
+                content: msg,
+                style: {
+                    marginTop: '10vh',
+                    color: 'green'
+                },
+            });
+    }
+    catch (e) {
+        message.error(e.message);
+    }
+}
+
+const updateDriverPwSaga = function* (action) {
+
+    try {
+        const response = yield call(updatePw, action.payload);
+        let msg =''
+        if (response.data?.msg !== "") {
+
+            msg = response.data?.msg
+        }
+
+        console.log("fds",response.data?.msg)
+        message.success(
+            {
+                content: msg,
+                style: {
+                    marginTop: '10vh',
+                    color: 'green'
+                },
+            });
+    }
+    catch (e) {
+        message.error(e.message);
     }
 }
 
@@ -151,6 +204,8 @@ export const driverRootSaga = function* () {
     yield takeLatest(searchDriversAction, searchDriversSaga)
     yield takeLatest(searchAssignedDriversAction, searchAssignedDriversSaga)
     yield takeLatest(assignVehicleToDriverAction, assignVehicleToDriverSaga)
+    yield takeLatest(updateDriverAction, updateDriverSaga)
+    yield takeLatest(updateDriverPwAction, updateDriverPwSaga)
 
 
 };

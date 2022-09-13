@@ -3,6 +3,12 @@ import AxiosInstance from './baseService';
 export const addNewDriver = (payload) => {
     return AxiosInstance.post('/Drivers/addNewDriver', payload);
 };
+export const updateDriver = (payload) => {
+    return AxiosInstance.post('/Drivers/updateDriver', payload);
+};
+export const updatePw = (payload) => {
+    return AxiosInstance.post('/updatePw', payload);
+};
 export const getVehicleDetails = (payload) => {
     return AxiosInstance.get('/Drivers/getDrivers');
 };
