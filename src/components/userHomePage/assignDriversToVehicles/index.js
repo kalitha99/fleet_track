@@ -218,7 +218,12 @@ const handleAssignDriversModalShow2 = (data) => {
                                         <Input disabled/>
                                     </Form.Item>
 
-                                    <Form.Item name={'name'} label="Driver name">
+                                    <Form.Item name={'name'} label="Driver name" rules={[
+                                        {
+                                            required: true,
+                                            message: 'Please enter a value!',
+                                        },
+                                    ]}>
                                         <Select
                                             showSearch
                                             placeholder="Select a person"
@@ -304,7 +309,12 @@ const handleAssignDriversModalShow2 = (data) => {
                                         <Input disabled/>
                                     </Form.Item>
 
-                                    <Form.Item name={'registration_number'} label="Vehicle reg no">
+                                    <Form.Item name={'registration_number'} label="Vehicle reg no" rules={[
+                                        {
+                                            required: true,
+                                            message: 'Please enter a value!',
+                                        },
+                                    ]}>
                                         <Select
                                             showSearch
                                             placeholder="Select a Reg. no"
