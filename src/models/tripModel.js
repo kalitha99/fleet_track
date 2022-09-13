@@ -39,8 +39,8 @@ const enterTripDetailsSaga = function* (action) {
                     },
                 });
         }
-    } catch (err) {
-
+    } catch (e) {
+        message.error(e.message);
 
     }
 }
@@ -76,6 +76,8 @@ const cancelTripSaga = function* (action) {
 
     } catch (e) {
         console.log(e)
+        console.log("login error ", e);
+        message.error(e.message);
     }
 }
 
@@ -89,6 +91,7 @@ const getTripsSaga = function* (action) {
 
     } catch (e) {
         console.log(e)
+        message.error(e.message);
     }
 }
 
@@ -122,6 +125,7 @@ const startTripSaga = function* (action) {
 
     } catch (e) {
         console.log(e)
+        message.error(e.message);
     }
 }
 
@@ -155,6 +159,7 @@ const endTripSaga = function* (action) {
 
     } catch (e) {
         console.log(e)
+        message.error(e.message);
     }
 }
 
