@@ -73,7 +73,7 @@ const ChatBot = () => {
                                     if (msg?.from==='us'){
                                         return <div key={index} className="messages__item messages__item--operator">{msg?.msg}</div>
                                     }else  if (msg?.from==='bot'){
-                                        return <div key={index} className="messages__item messages__item--visitor">{msg?.msg}</div>
+                                        return <div key={index} className="messages__item messages__item--visitor"><a style={{textDecoration:"none"}} href={msg?.msg}>{msg?.msg}</a></div>
                                     }
                                 })
                             }
