@@ -51,17 +51,32 @@ const EnterExpenses = () => {
                 >
                     <Row style={{width: '100%'}}>
                         <Col span={6}>
-                            <Form.Item name={'registration_number'} label="Registration number" initialValue={""}>
+                            <Form.Item name={'registration_number'} label="Registration number" initialValue={""} rules={[
+                                {
+                                    required: true,
+                                    message: 'Please enter a value!',
+                                },
+                            ]}>
                                 <Input/>
                             </Form.Item>
                         </Col>
                         <Col span={6} offset={1}>
-                            <Form.Item name={'expense_type'} label="Expense type" value initialValue={"maintenance"} >
+                            <Form.Item name={'expense_type'} label="Expense type" value initialValue={"maintenance"} rules={[
+                                {
+                                    required: true,
+                                    message: 'Please enter a value!',
+                                },
+                            ]}>
                                 <Input disabled/>
                             </Form.Item>
                         </Col>
                         <Col span={6} offset={1}>
-                            <Form.Item name={'expense_date'} label="Expense date" initialValue={""}>
+                            <Form.Item name={'expense_date'} label="Expense date" initialValue={""} rules={[
+                                {
+                                    required: true,
+                                    message: 'Please enter a value!',
+                                },
+                            ]}>
                                 <Input/>
                             </Form.Item>
                         </Col>
@@ -69,17 +84,32 @@ const EnterExpenses = () => {
 
                     <Row style={{width: '100%'}}>
                         <Col span={6}>
-                            <Form.Item name={'expense_name'} label="Expense name" initialValue={""}>
+                            <Form.Item name={'expense_name'} label="Expense name" initialValue={""} rules={[
+                                {
+                                    required: true,
+                                    message: 'Please enter a value!',
+                                },
+                            ]}>
                                 <Input/>
                             </Form.Item>
                         </Col>
                         <Col span={6} offset={1}>
-                            <Form.Item name={'expense_cost'} label="Expense cost" initialValue={""}>
+                            <Form.Item name={'expense_cost'} label="Expense cost" initialValue={""} rules={[
+                                {
+                                    required: true,
+                                    message: 'Please enter a value!',
+                                },
+                            ]}>
                                 <Input/>
                             </Form.Item>
                         </Col>
                         <Col span={6} offset={1}>
-                            <Form.Item name={"image"} label="Photo" rules={[{required: true}]}>
+                            <Form.Item name={"image"} label="Photo"  rules={[
+                                {
+                                    required: true,
+                                    message: 'Please enter a value!',
+                                },
+                            ]}>
                                 <Upload name="image"
                                         listType="text"
                                         defaultFileList={fileList}

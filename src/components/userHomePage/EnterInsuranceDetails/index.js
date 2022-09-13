@@ -1,20 +1,22 @@
 import React, {useEffect, useState} from 'react';
-import {Button, Card, Col, DatePicker, Form, Input, Modal, Row, Table} from "antd";
+import {Button, Card, Col, DatePicker, Form, Input, Modal, Row, Table, Upload} from "antd";
 import './style.css'
 import BreadCrumb from "../../../Comp/breadCrumb";
 import {
     searchVehicleDataAction,
     setEditModalContentAction,
-    updateInsuranceDetailsAction,
+    updateInsuranceDetailsAction, updateRevenueLicenseAction,
 } from "../../../models/vehicleModel";
 import {useDispatch, useSelector} from "react-redux";
 import {viewAllVehicleColumns} from "./tableProperties";
+import {CloudUploadOutlined} from "@ant-design/icons";
 
 const EnterinsuranceDetails = () => {
     const [editinsuranceDetailsForm] = Form.useForm();
     const [searchForm] = Form.useForm();
     const dispatch = useDispatch();
     const [shoWEditModel, setShoWEditModel] = useState(false);
+    const [fileList, setFileList] = useState(null);
 
     const vehicleData = useSelector((state) => state.vehicleData.vehicleDetails);
     let editRevenueLicense = useSelector((state) => state.vehicleData.editModalContent);
@@ -62,6 +64,7 @@ const EnterinsuranceDetails = () => {
             model: searchForm.getFieldValue('model'),
             assigned_driver:""
         }
+        values.img = fileList
         dispatch(updateInsuranceDetailsAction(values));
         dispatch(searchVehicleDataAction(data));
         editinsuranceDetailsForm.setFieldsValue({insurance_num: ""});
@@ -69,6 +72,19 @@ const EnterinsuranceDetails = () => {
         editinsuranceDetailsForm.setFieldsValue({insurance_expire_date: ""});
         handleOk()
     }
+
+
+    function handleChange(e) {
+        //console.log(e.file)
+        setFileList(e.file);
+    };
+
+    const dummyRequest = ({file, onSuccess}) => {
+        setTimeout(() => {
+            onSuccess("ok");
+        }, 0);
+    }
+
 
     console.log(editRevenueLicense)
     return (
@@ -133,18 +149,58 @@ const EnterinsuranceDetails = () => {
                         </Form.Item>
 
 
-                        <Form.Item name={'insurance_num'} label="insurance num">
+                        <Form.Item name={'insurance_num'} label="insurance num" rules={[
+                            {
+                                required: true,
+                                message: 'Please enter a value!',
+                            },
+                        ]}>
                             <Input/>
                         </Form.Item>
 
 
-                        <Form.Item name={'insurance_issue_date'} label="insurance issue date">
+                        <Form.Item name={'insurance_issue_date'} label="insurance issue date" rules={[
+                            {
+                                required: true,
+                                message: 'Please enter a value!',
+                            },
+                        ]}>
                             <DatePicker/>
                         </Form.Item>
 
 
-                        <Form.Item name={'insurance_expire_date'} label="insurance expire date">
+                        <Form.Item name={'insurance_expire_date'} label="insurance expire date" rules={[
+                            {
+                                required: true,
+                                message: 'Please enter a value!',
+                            },
+                        ]}>
                             <DatePicker/>
+                        </Form.Item>
+
+                        <Form.Item name={'expense_cost'} label="expense cost" rules={[
+                            {
+                                required: true,
+                                message: 'Please enter a value!',
+                            },
+                        ]}>
+                            <Input/>
+                        </Form.Item>
+
+                        <Form.Item name={"image"} label="Photo" rules={[{required: true}]}>
+                            <Upload name="image"
+                                    listType="text"
+                                    defaultFileList={fileList}
+                                // type={"file"}
+                                    onChange={(e) => handleChange(e)}
+                                    multiple={false}
+                                    customRequest={dummyRequest}
+                                    allowClear
+
+                            >
+                                <CloudUploadOutlined/> Upload
+
+                            </Upload>
                         </Form.Item>
 
 
