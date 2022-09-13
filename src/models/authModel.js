@@ -82,19 +82,20 @@ const signupSaga = function* (action) {
                         color: 'green'
                     },
                 });
-        } else {
-            msg = response.data?.msg
+        } else  {
+
+            console.log("fds", response.data.error)
             message.error(
                 {
-                    content: msg,
+                    content: response.data.error,
                     style: {
-                        marginTop: '50vh',
+                        marginTop: '10vh',
                         color: 'red'
                     },
                 });
         }
     } catch (e) {
-
+        message.error(e.message);
     }
 
 }

@@ -15,6 +15,8 @@ import ViewTrips from "./viewAllTrips";
 import UserDashboard from "./dashboard";
 import {Breadcrumb} from "antd";
 import HomeOutlined from "@ant-design/icons/lib/icons/HomeOutlined";
+import ViewExpenses from "./getVehiclesWithExpenses";
+import PredictCost from "./CostPredictor";
 
 const UserHomePage = () => {
     return (
@@ -24,6 +26,12 @@ const UserHomePage = () => {
                 <HashRouter basename={"/userHome"}>
                     <Switch>
 
+                        <Route  path={'/Predict-Cost'}>
+                            <PredictCost/>
+                        </Route>
+                        <Route  path={'/View-Expenses'}>
+                            <ViewExpenses/>
+                        </Route>
                         <Route  path={'/View-Trips'}>
                             <ViewTrips/>
                         </Route>

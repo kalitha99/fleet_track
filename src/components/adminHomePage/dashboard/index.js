@@ -42,10 +42,6 @@ const Dashboard = () => {
                     />
 
                     <CustomCard
-                        btnname="View all driver details"
-                        onClick={() => history.push('/View-All-Drivers')}
-                    />
-                    <CustomCard
                         btnname="Common tasks"
                         onClick={() => history.push('/Common-tasks')}
                     />

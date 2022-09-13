@@ -64,6 +64,14 @@ const UserDashboard = () => {
                         btnname="View Trips"
                         onClick={() => history.push('/View-Trips')}
                     />
+                    <CustomCard
+                        btnname="View Expenses"
+                        onClick={() => history.push('/View-Expenses')}
+                    />
+                    <CustomCard
+                        btnname="Predict Cost"
+                        onClick={() => history.push('/Predict-Cost')}
+                    />
 
                 </div>
             </div>

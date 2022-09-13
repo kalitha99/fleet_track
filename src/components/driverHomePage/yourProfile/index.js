@@ -2,7 +2,12 @@ import React, {useEffect} from 'react';
 import "./style.css"
 import {Button, Form, Input, InputNumber, Card, DatePicker} from 'antd';
 import BreadCrumb from "../../../Comp/breadCrumb";
-import {addNewDriverAction, getDriversByEmailAction} from "../../../models/driverModel";
+import {
+    addNewDriverAction,
+    getDriversByEmailAction,
+    updateDriverAction,
+    updateDriverPwAction
+} from "../../../models/driverModel";
 import {useDispatch, useSelector} from "react-redux";
 
 const layout = {
@@ -37,11 +42,16 @@ const DriverProfile = () => {
     }, [driverData]);
 
 
+    function onSubmit(values) {
+        //console.log(values.password)
+        dispatch(updateDriverPwAction(values));
+    }
+
     return (
         <div>
             <BreadCrumb/>
             <Card>
-                <Form {...layout} name="nest-messages" form={driver}>
+                <Form {...layout} name="nest-messages" form={driver} onFinish={onSubmit}>
                     <Form.Item name={'name'} label="Name" rules={[{required: true}]}>
                         <Input disabled/>
                     </Form.Item>
@@ -65,6 +75,14 @@ const DriverProfile = () => {
                     </Form.Item>
                     <Form.Item name={'bloodGroup'} label="Blood Group" rules={[{required: true}]}>
                         <Input disabled/>
+                    </Form.Item>
+                    <Form.Item name={'password'} label="Password" rules={[{required: true}]}>
+                        <Input.Password />
+                    </Form.Item>
+                    <Form.Item >
+                        <Button type="primary" htmlType="submit">
+                            Update password
+                        </Button>
                     </Form.Item>
 
                 </Form>
